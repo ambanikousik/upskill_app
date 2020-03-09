@@ -76,7 +76,6 @@ class SigningScreen extends StatelessWidget {
                             )
                           ]
                         ),
-
                       ),
                     ),
                     Container(

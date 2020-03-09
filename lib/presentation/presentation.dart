@@ -7,6 +7,8 @@ export 'pages/domain_screen.dart';
 export 'pages/subdomain_screen.dart';
 export 'pages/topic_screen.dart';
 export 'pages/test_screen.dart';
+export 'pages/result_screen.dart';
+export 'pages/analytic_screen.dart';
 
 
 
@@ -21,6 +23,9 @@ export 'widgets/answer_options.dart';
 export 'widgets/only_text_option.dart';
 export 'widgets/remaining_time.dart';
 export 'widgets/image_text_option.dart';
+export 'widgets/score_board.dart';
+export 'widgets/competitive_analysis.dart';
+
 
 
 

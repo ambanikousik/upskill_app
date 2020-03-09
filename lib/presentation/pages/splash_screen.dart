@@ -7,7 +7,7 @@ class SplashScreen extends StatelessWidget {
     Future.delayed(
         Duration(seconds:1),
             () {
-          Navigator.pushReplacementNamed(context, '/test1');
+          Navigator.pushReplacementNamed(context, '/opening');
         }
     );
   }
@@ -24,7 +24,6 @@ class SplashScreen extends StatelessWidget {
           child: Image.asset(logo),
         ),
       ),
-
     );
   }
 }

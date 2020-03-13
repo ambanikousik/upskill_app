@@ -6,3 +6,4 @@ class ScoreDetailsModel{
 
   ScoreDetailsModel(this.title,this.ques,this.ans,this.level);
 }
+

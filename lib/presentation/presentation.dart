@@ -1,16 +1,25 @@
 //------------------ SCREENS ----------------//
-export 'pages/splash_screen.dart';
-export 'pages/opening_screen.dart';
-export 'pages/signin_screen.dart';
-export 'pages/survey_screen.dart';
-export 'pages/domain_screen.dart';
-export 'pages/subdomain_screen.dart';
-export 'pages/topic_screen.dart';
-export 'pages/test_screen.dart';
-export 'pages/result_screen.dart';
-export 'pages/analytic_screen.dart';
+export 'screens/splash_screen.dart';
 
+//------------------ USER ----------------//
+export 'screens/user/opening_screen.dart';
+export 'screens/user/signin_screen.dart';
+export 'screens/user/survey_screen.dart';
+export 'screens/user/domain_screen.dart';
+export 'screens/user/subdomain_screen.dart';
+export 'screens/user/topic_screen.dart';
+export 'screens/user/test_screen.dart';
+export 'screens/user/result_screen.dart';
+export 'screens/user/analytic_screen.dart';
 
+//------------------ CONTRIBUTOR ----------------//
+export 'screens/contributor/contributor_tut_1.dart';
+export 'screens/contributor/contributor_tut_2.dart';
+export 'screens/contributor/contributor_tut_3.dart';
+export 'screens/contributor/new_test.dart';
+export 'screens/contributor/test_details.dart';
+export 'screens/contributor/add_question.dart';
+export 'screens/contributor/add_answer.dart';
 
 
 //------------------ WIDGETS ----------------//

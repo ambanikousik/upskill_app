@@ -9,5 +9,4 @@ class AnswerModel {
      this.isSelected,
      this.image
   }) ;
-
 }

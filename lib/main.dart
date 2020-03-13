@@ -23,11 +23,16 @@ class MyApp extends StatelessWidget {
         '/test2': (context)=> TestScreen(question:question2 ,answers: answer1,route: 'test3',),
         '/test3': (context)=> TestScreen(question:question2 ,answers: answer2,route: 'test4',),
         '/test4': (context) =>
-            TestScreen(
-              question: question2, answers: answer3, route: 'result',),
+            TestScreen(question: question2, answers: answer3, route: 'result',),
         '/result': (context) => ResultScreen(),
         '/analytic': (context) => AnalyticScreen(),
-
+        '/tut1': (context) => ContributorTut1(),
+        '/tut2': (context) => ContributorTut2(),
+        '/tut3': (context) => ContributorTut3(),
+        '/newTest': (context) => NewTest(),
+        '/testDetails': (context) => TestDetails(),
+        '/addQuestion': (context) => AddQuestion(),
+        '/addAnswer': (context) => AddAnswer(),
       },
     );
   }

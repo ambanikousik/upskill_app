@@ -10,13 +10,16 @@ class AddAnswer extends StatefulWidget {
 }
 
 class _AddAnswerState extends State<AddAnswer> {
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: UpskillAppBar(),
       body: SingleChildScrollView(
         child: Container(
-          margin: EdgeInsets.symmetric(horizontal: width * 4),
+          margin: EdgeInsets.symmetric(
+              horizontal: width * 4, vertical: height * 2),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
@@ -39,7 +42,7 @@ class _AddAnswerState extends State<AddAnswer> {
                 ),
               ),
               Container(
-                padding: EdgeInsets.symmetric(vertical: height),
+                padding: EdgeInsets.symmetric(vertical: height * 2),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
@@ -68,11 +71,12 @@ class _AddAnswerState extends State<AddAnswer> {
                         Padding(
                           padding: EdgeInsets.only(right: width * 2),
                           child: Container(
-                            height: width * 8,
-                            width: width * 8,
+                            height: width * 6,
+                            width: width * 6,
                             child: Center(
                                 child: Icon(
                               Icons.check,
+
 //                                  color:_option.isSelected ? white : green,)
                               color: white,
                             )),
@@ -87,7 +91,7 @@ class _AddAnswerState extends State<AddAnswer> {
                         ),
                         Text(
                           'Correct Answer',
-                          style: normalText_2,
+                          style: normalText_4,
                         )
                       ],
                     )
@@ -95,7 +99,7 @@ class _AddAnswerState extends State<AddAnswer> {
                 ),
               ),
               Container(
-                padding: EdgeInsets.symmetric(vertical: height),
+                padding: EdgeInsets.symmetric(vertical: height * 2),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
@@ -124,8 +128,8 @@ class _AddAnswerState extends State<AddAnswer> {
                         Padding(
                           padding: EdgeInsets.only(right: width * 2),
                           child: Container(
-                            height: width * 8,
-                            width: width * 8,
+                            height: width * 6,
+                            width: width * 6,
                             child: Center(
                                 child: Icon(
                               Icons.check,
@@ -143,7 +147,7 @@ class _AddAnswerState extends State<AddAnswer> {
                         ),
                         Text(
                           'Correct Answer',
-                          style: normalText_2,
+                          style: normalText_4,
                         )
                       ],
                     )
@@ -151,7 +155,7 @@ class _AddAnswerState extends State<AddAnswer> {
                 ),
               ),
               Container(
-                padding: EdgeInsets.symmetric(vertical: height),
+                padding: EdgeInsets.symmetric(vertical: height * 2),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
@@ -180,8 +184,8 @@ class _AddAnswerState extends State<AddAnswer> {
                         Padding(
                           padding: EdgeInsets.only(right: width * 2),
                           child: Container(
-                            height: width * 8,
-                            width: width * 8,
+                            height: width * 6,
+                            width: width * 6,
                             child: Center(
                                 child: Icon(
                               Icons.check,
@@ -199,7 +203,7 @@ class _AddAnswerState extends State<AddAnswer> {
                         ),
                         Text(
                           'Correct Answer',
-                          style: normalText_2,
+                          style: normalText_4,
                         )
                       ],
                     )
@@ -207,7 +211,7 @@ class _AddAnswerState extends State<AddAnswer> {
                 ),
               ),
               Container(
-                padding: EdgeInsets.symmetric(vertical: height),
+                padding: EdgeInsets.symmetric(vertical: height * 2),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
@@ -236,8 +240,8 @@ class _AddAnswerState extends State<AddAnswer> {
                         Padding(
                           padding: EdgeInsets.only(right: width * 2),
                           child: Container(
-                            height: width * 8,
-                            width: width * 8,
+                            height: width * 6,
+                            width: width * 6,
                             child: Center(
                                 child: Icon(
                               Icons.check,
@@ -255,7 +259,7 @@ class _AddAnswerState extends State<AddAnswer> {
                         ),
                         Text(
                           'Correct Answer',
-                          style: normalText_2,
+                          style: normalText_4,
                         )
                       ],
                     )
@@ -291,6 +295,10 @@ class _AddAnswerState extends State<AddAnswer> {
                     child: BlueButton(
                       buttonText: 'Save and go next',
                       action: () {
+                        showDialog(context: context,
+                            builder: (BuildContext context) =>
+                                AddAnotherQuestionDialog());
+
 //                        Navigator.pushNamed(context, '/addAnswer');
                       },
                       textSize: width * 4,
@@ -304,4 +312,5 @@ class _AddAnswerState extends State<AddAnswer> {
       ),
     );
   }
+
 }

@@ -33,6 +33,10 @@ class MyApp extends StatelessWidget {
         '/testDetails': (context) => TestDetails(),
         '/addQuestion': (context) => AddQuestion(),
         '/addAnswer': (context) => AddAnswer(),
+        '/congrats': (context) => Congratulations(),
+        '/qstnList': (context) => QuestionList(),
+        '/qstnEdit': (context) => QuestionEditor(),
+        '/contributeProfile': (context) => ContributorProfile(),
       },
     );
   }

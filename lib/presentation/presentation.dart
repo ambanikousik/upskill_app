@@ -20,6 +20,10 @@ export 'screens/contributor/new_test.dart';
 export 'screens/contributor/test_details.dart';
 export 'screens/contributor/add_question.dart';
 export 'screens/contributor/add_answer.dart';
+export 'screens/contributor/congratulations.dart';
+export 'screens/contributor/question_list.dart';
+export 'screens/contributor/question_editor.dart';
+export 'screens/contributor/contributor_profile.dart';
 
 
 //------------------ WIDGETS ----------------//
@@ -34,6 +38,8 @@ export 'widgets/remaining_time.dart';
 export 'widgets/image_text_option.dart';
 export 'widgets/score_board.dart';
 export 'widgets/competitive_analysis.dart';
+export 'widgets/add_another_question_dialog.dart';
+export 'widgets/edit_question.dart';
 
 
 

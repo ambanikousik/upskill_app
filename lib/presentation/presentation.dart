@@ -24,6 +24,7 @@ export 'screens/contributor/congratulations.dart';
 export 'screens/contributor/question_list.dart';
 export 'screens/contributor/question_editor.dart';
 export 'screens/contributor/contributor_profile.dart';
+export 'screens/contributor/test_stats.dart';
 
 
 //------------------ WIDGETS ----------------//
@@ -40,6 +41,8 @@ export 'widgets/score_board.dart';
 export 'widgets/competitive_analysis.dart';
 export 'widgets/add_another_question_dialog.dart';
 export 'widgets/edit_question.dart';
+export 'widgets/topic_tile_contributor.dart';
+export 'widgets/score_board_contributor.dart';
 
 
 

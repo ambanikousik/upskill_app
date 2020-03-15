@@ -37,6 +37,7 @@ class MyApp extends StatelessWidget {
         '/qstnList': (context) => QuestionList(),
         '/qstnEdit': (context) => QuestionEditor(),
         '/contributeProfile': (context) => ContributorProfile(),
+        '/testStats': (context) => TestStats(),
       },
     );
   }

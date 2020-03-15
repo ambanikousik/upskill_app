@@ -7,6 +7,7 @@ String cover3 = 'assets/cover_3.png';
 String logo = 'assets/logo.png';
 String logoWithoutName = 'assets/launcher_icon.png';
 String congrats = 'assets/congrats.png';
+String profile = 'assets/profile.jpg';
 
 
 

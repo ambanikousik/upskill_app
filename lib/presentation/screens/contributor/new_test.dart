@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:upskillapp/data/data.dart';
-import 'package:upskillapp/data/data.dart';
 import 'package:upskillapp/presentation/presentation.dart';
 
 class NewTest extends StatefulWidget {

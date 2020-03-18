@@ -1,11 +1,12 @@
-//------------------ SCREENS ----------------//
-export 'screens/splash_screen.dart';
+//------------------ UPSKILL  ----------------//
+export 'screens/upskill/splash_screen.dart';
+export 'screens/upskill/survey_screen.dart';
+export 'screens/upskill/domain_screen.dart';
+export 'screens/upskill/upskill_tutorial.dart';
 
 //------------------ USER ----------------//
 export 'screens/user/opening_screen.dart';
 export 'screens/user/signin_screen.dart';
-export 'screens/user/survey_screen.dart';
-export 'screens/user/domain_screen.dart';
 export 'screens/user/subdomain_screen.dart';
 export 'screens/user/topic_screen.dart';
 export 'screens/user/test_screen.dart';

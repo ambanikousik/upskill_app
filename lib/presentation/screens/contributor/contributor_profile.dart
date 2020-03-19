@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:upskillapp/bloc/bloc.dart';
 import 'package:upskillapp/data/data.dart';
 import 'package:upskillapp/presentation/presentation.dart';
 
@@ -67,7 +68,8 @@ class ContributorProfile extends StatelessWidget {
                 participants: 240,
                 approved: true,
                 action: () {
-                  Navigator.pushNamed(context, '/testStats');
+                  BlocProvider.of<ContributorBloc>(context).add(
+                      ContributorTestDetailsEvent());
                 },
               ),
               TopicTileContributor(
@@ -77,7 +79,8 @@ class ContributorProfile extends StatelessWidget {
                 participants: 170,
                 approved: true,
                 action: () {
-                  Navigator.pushNamed(context, '/testStats');
+                  BlocProvider.of<ContributorBloc>(context).add(
+                      ContributorTestDetailsEvent());
                 },
               ),
               TopicTileContributor(
@@ -87,7 +90,8 @@ class ContributorProfile extends StatelessWidget {
                 participants: 240,
                 approved: false,
                 action: () {
-                  Navigator.pushNamed(context, '/testStats');
+                  BlocProvider.of<ContributorBloc>(context).add(
+                      ContributorTestDetailsEvent());
                 },
               ),
               Padding(

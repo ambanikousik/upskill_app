@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:upskillapp/data/data.dart';
 
-class Domain extends StatelessWidget {
+class DomainGrid extends StatelessWidget {
 
   final String domainText;
   final VoidCallback action;
@@ -9,7 +9,7 @@ class Domain extends StatelessWidget {
 
 //  Button()
 
-  Domain({
+  DomainGrid({
     Key key,
     @required this.domainText,
     @required this.action,
@@ -30,7 +30,7 @@ class Domain extends StatelessWidget {
             height: width*40,
             decoration: BoxDecoration(
               image: DecorationImage(
-                image: AssetImage(image),
+                image: NetworkImage(image),
               ),
               borderRadius: BorderRadius.circular(15),
             ),

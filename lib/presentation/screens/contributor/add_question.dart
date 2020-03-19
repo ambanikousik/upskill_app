@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:upskillapp/bloc/bloc.dart';
 import 'package:upskillapp/data/data.dart';
 import 'package:upskillapp/presentation/presentation.dart';
 
@@ -280,7 +281,8 @@ class _AddQuestionState extends State<AddQuestion> {
                     child: BlueButton(
                       buttonText: 'Save and go next',
                       action: () {
-                        Navigator.pushNamed(context, '/addAnswer');
+                        BlocProvider.of<ContributorBloc>(context).add(
+                            ContributorAddAnswerEvent());
                       },
                       textSize: width * 4,
                     ),

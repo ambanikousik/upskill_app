@@ -40,7 +40,7 @@ class TopicTile extends StatelessWidget {
             children: <Widget>[
               Container(
                 height: height*10,
-                child: Image.asset(image),
+                child: Image.network(image),
               ),
 //              SizedBox(width: width*2,),
               Expanded(

@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:upskillapp/bloc/bloc.dart';
 import 'package:upskillapp/data/data.dart';
 import 'package:upskillapp/presentation/presentation.dart';
 
@@ -54,7 +55,9 @@ class Congratulations extends StatelessWidget {
               children: <Widget>[
                 GestureDetector(
                   onTap: () {
-                    Navigator.pushNamed(context, '/contributeProfile');
+//                    Navigator.pushNamed(context, '/contributeProfile');
+                    BlocProvider.of<ContributorBloc>(context).add(
+                        ContributorProfileEvent());
                   },
                   child: Container(
                     height: height * 7,
@@ -81,7 +84,9 @@ class Congratulations extends StatelessWidget {
                     buttonText: 'Yes,Want to edit',
                     action: () {
 //                      Navigator.of(context).pop();
-                      Navigator.pushNamed(context, '/qstnList');
+//                      Navigator.pushNamed(context, '/qstnList');
+                      BlocProvider.of<ContributorBloc>(context).add(
+                          ContributorQuestionListEvent());
                     },
                     textSize: width * 4,
                   ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:upskillapp/bloc/bloc.dart';
 import 'package:upskillapp/data/data.dart';
 import 'package:upskillapp/presentation/presentation.dart';
 
@@ -63,7 +64,7 @@ class ResultScreen extends StatelessWidget {
             BlueButton(
               buttonText: 'See result statistics',
               action: () {
-                Navigator.pushNamed(context, '/analytic');
+                BlocProvider.of<UserBloc>(context).add(AnalysisUserEvent());
               },
             ),
           ],

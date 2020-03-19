@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:upskillapp/presentation/presentation.dart';
 import 'package:upskillapp/data/data.dart';
+import 'package:upskillapp/bloc/bloc.dart';
 
 class TestDetails extends StatelessWidget {
   @override
@@ -89,7 +90,8 @@ class TestDetails extends StatelessWidget {
                     textSize: width * 4,
                     buttonText: 'Save and go next',
                     action: () {
-                      Navigator.pushNamed(context, '/addQuestion');
+                      BlocProvider.of<ContributorBloc>(context).add(
+                          ContributorAddQuestionEvent());
                     },
                   ),
                 ),

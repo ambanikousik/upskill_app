@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:upskillapp/bloc/bloc.dart';
 import 'package:upskillapp/data/data.dart';
 import 'package:upskillapp/presentation/presentation.dart';
 
@@ -6,7 +7,12 @@ class TestStats extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: UpskillAppBar(),
+      appBar: UpskillAppBar(
+        action: () {
+          BlocProvider.of<ContributorBloc>(context).add(
+              ContributorProfileEvent());
+        },
+      ),
       body: Container(
         margin:
             EdgeInsets.symmetric(horizontal: width * 4, vertical: height * 4),

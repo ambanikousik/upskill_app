@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:upskillapp/bloc/bloc.dart';
 import 'package:upskillapp/data/data.dart';
 import 'package:upskillapp/presentation/presentation.dart';
 import 'package:upskillapp/models/models.dart';
@@ -46,7 +47,7 @@ class TestScreen extends StatelessWidget {
               BlueButton(
                 buttonText: 'Submit Answer',
                 action: (){
-                  Navigator.pushNamed(context, '/$route');
+                  BlocProvider.of<UserBloc>(context).add(ResultUserEvent());
                 },
               )
             ],

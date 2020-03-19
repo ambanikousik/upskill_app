@@ -1,9 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:upskillapp/bloc/bloc.dart';
 import 'package:upskillapp/data/data.dart';
 import 'package:upskillapp/presentation/presentation.dart';
 
 class AddAnotherQuestionDialog extends StatelessWidget {
+  final _ContributorBloc = ContributorBloc();
+
   @override
   Widget build(BuildContext context) {
     return Dialog(
@@ -29,7 +32,8 @@ class AddAnotherQuestionDialog extends StatelessWidget {
               children: <Widget>[
                 GestureDetector(
                   onTap: () {
-                    Navigator.pushNamed(context, '/congrats');
+                    _ContributorBloc.add(ContributorCongratulationsEvent());
+                    Navigator.of(context).pop();
                   },
                   child: Container(
                     height: height * 7,
@@ -55,9 +59,9 @@ class AddAnotherQuestionDialog extends StatelessWidget {
                   child: BlueButton(
                     buttonText: 'Yes,Add new',
                     action: () {
-//                     Navigator.of(context).pop();
-
-                      Navigator.pushNamed(context, '/addQuestion');
+                      _ContributorBloc.add(ContributorAddQuestionEvent());
+                      Navigator.of(context).pop();
+//                      Navigator.pushNamed(context, '/addQuestion');
                     },
                     textSize: width * 4,
                   ),

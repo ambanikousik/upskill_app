@@ -3,6 +3,16 @@ import 'package:upskillapp/data/data.dart';
 import 'package:upskillapp/presentation/presentation.dart';
 
 class EditQuestion extends StatelessWidget {
+
+  final VoidCallback action;
+
+  EditQuestion({
+    Key key,
+    @required this.action,
+  })
+      : assert(action != null),
+        super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -22,16 +32,14 @@ class EditQuestion extends StatelessWidget {
           ),
           Padding(
             padding:
-                EdgeInsets.symmetric(vertical: height, horizontal: width * 2),
+            EdgeInsets.symmetric(vertical: height, horizontal: width * 2),
             child: Container(
               width: width * 17,
               height: height * 5,
               child: BlueButton(
                 buttonText: 'Edit',
                 textSize: width * 4,
-                action: () {
-                  Navigator.pushNamed(context, '/qstnEdit');
-                },
+                action: action,
               ),
             ),
           ),

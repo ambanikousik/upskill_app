@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:upskillapp/data/data.dart';
 import 'package:upskillapp/presentation/presentation.dart';
+import 'package:upskillapp/bloc/bloc.dart';
 
 class NewTest extends StatefulWidget {
   NewTest({Key key}) : super(key: key);
@@ -174,7 +175,9 @@ class _NewTestState extends State<NewTest> {
                   child: BlueButton(
                     buttonText: 'Save and go next',
                     action: () {
-                      Navigator.pushNamed(context, '/testDetails');
+                      BlocProvider.of<ContributorBloc>(context).add(
+                          ContributorAddDetailsEvent());
+
                     },
                   ),
                 ),

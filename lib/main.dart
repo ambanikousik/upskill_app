@@ -3,20 +3,45 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:upskillapp/bloc/bloc.dart';
 import 'simple_bloc_delegate.dart';
 import 'presentation/presentation.dart';
-import 'data/data.dart';
-
+import 'repository/repositories.dart';
+import 'package:http/http.dart' as http;
 
 void main() {
   BlocSupervisor.delegate = SimpleBlocDelegate();
-  runApp(MyApp());
+
+  final UpskillRepository upskillRepository = UpskillRepository(
+      upskillApiClient: UpskillApiClient(
+        httpClient: http.Client(),
+      ));
+
+  runApp(MyApp(upskillRepository: upskillRepository,));
 }
 
 class MyApp extends StatelessWidget {
+
+  final UpskillRepository upskillRepository;
+
+  MyApp({Key key, @required this.upskillRepository})
+      : assert(upskillRepository != null),
+        super(key: key);
+
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (BuildContext context) => UpskillBloc(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<UpskillBloc>(
+          create: (BuildContext context) =>
+              UpskillBloc(upskillRepository: upskillRepository),
+        ),
+        BlocProvider<ContributorBloc>(
+          create: (BuildContext context) => ContributorBloc(),
+        ),
+        BlocProvider<UserBloc>(
+          create: (BuildContext context) =>
+              UserBloc(upskillRepository: upskillRepository),
+        ),
+      ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Upskill',
@@ -68,7 +93,8 @@ class MyApp extends StatelessWidget {
                         ).animate(animation),
                         child: child,
                       );
-                    }, child: SurveyScreen());
+                    },
+                    child: SurveyScreen());
               }
               if (state is UpskillDomain) {
                 return AnimatedSwitcher(
@@ -83,7 +109,8 @@ class MyApp extends StatelessWidget {
                         ).animate(animation),
                         child: child,
                       );
-                    }, child: DomainScreen());
+                    },
+                    child: DomainScreen(domainsList: state.domainsList,));
               }
               if (state is UpskillUser) {
                 return AnimatedSwitcher(
@@ -98,7 +125,8 @@ class MyApp extends StatelessWidget {
                         ).animate(animation),
                         child: child,
                       );
-                    }, child: SubdomainScreen());
+                    },
+                    child: User());
               }
               if (state is UpskillContributor) {
                 return AnimatedSwitcher(
@@ -112,40 +140,32 @@ class MyApp extends StatelessWidget {
                         ).animate(animation),
                         child: child,
                       );
-                    }, child: ContributorTut1());
+                    },
+                    child: Contributor());
               }
-            }
-        ),
-//        initialRoute: '/',
-//        routes: {
-//          '/': (context)=> SplashScreen(),
-//          '/opening': (context)=> OpeningScreen(),
-//          '/signin': (context)=> SigningScreen(),
-//          '/survey': (context)=> SurveyScreen(),
-//          '/domain': (context)=> DomainScreen(),
-//          '/subdomain': (context)=> SubdomainScreen(),
-//          '/topic': (context)=> TopicScreen(),
-//          '/test1': (context)=> TestScreen(question:question1 ,answers: answer1,route: 'test2',),
-//          '/test2': (context)=> TestScreen(question:question2 ,answers: answer1,route: 'test3',),
-//          '/test3': (context)=> TestScreen(question:question2 ,answers: answer2,route: 'test4',),
-//          '/test4': (context) =>
-//              TestScreen(question: question2, answers: answer3, route: 'result',),
-//          '/result': (context) => ResultScreen(),
-//          '/analytic': (context) => AnalyticScreen(),
-//          '/tut1': (context) => ContributorTut1(),
-//          '/tut2': (context) => ContributorTut2(),
-//          '/tut3': (context) => ContributorTut3(),
-//          '/newTest': (context) => NewTest(),
-//          '/testDetails': (context) => TestDetails(),
-//          '/addQuestion': (context) => AddQuestion(),
-//          '/addAnswer': (context) => AddAnswer(),
-//          '/congrats': (context) => Congratulations(),
-//          '/qstnList': (context) => QuestionList(),
-//          '/qstnEdit': (context) => QuestionEditor(),
-//          '/contributeProfile': (context) => ContributorProfile(),
-//          '/testStats': (context) => TestStats(),
-//          '/upskillTutorial': (context) => UpskillTutorialScreen(),
-//        },
+              if (state is UpskillLoading) {
+                return AnimatedSwitcher(
+                    duration: Duration(milliseconds: 250),
+                    transitionBuilder: (Widget child,
+                        Animation<double> animation) {
+                      return SlideTransition(
+                        position: Tween<Offset>(
+                          begin: Offset(0.25, 0),
+                          end: Offset.zero,
+                        ).animate(animation),
+                        child: child,
+                      );
+                    },
+                    child: LoadingIndicator());
+              }
+
+              if (state is UpskillError) {
+                return Text(
+                  'Something went wrong!',
+                  style: TextStyle(color: Colors.red),
+                );
+              }
+            }),
       ),
     );
   }

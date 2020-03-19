@@ -6,7 +6,6 @@ import 'package:upskillapp/presentation/presentation.dart';
 class SigningScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return Scaffold(
       backgroundColor: Colors.green,
       body: Column(

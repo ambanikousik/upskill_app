@@ -7,7 +7,6 @@ abstract class UpskillEvent extends Equatable {
   List<Object> get props => [];
 }
 
-//class UpskillNextScreen extends UpskillEvent{}
 class UpskillTutorialEvent extends UpskillEvent {}
 
 class UpskillSurveyEvent extends UpskillEvent {}

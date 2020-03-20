@@ -1,4 +1,6 @@
 import 'package:equatable/equatable.dart';
+import 'package:upskillapp/models/contributor_model.dart';
+import 'package:meta/meta.dart';
 
 abstract class ContributorState extends Equatable {
   const ContributorState();
@@ -27,4 +29,23 @@ class ContributorEditTestState extends ContributorState {}
 
 class ContributorProfileState extends ContributorState {}
 
-class ContributorTestDetailsState extends ContributorState {}
+class ContributorTestDetailsState extends ContributorState {
+
+  final ContributorModel contributorModel;
+
+  const ContributorTestDetailsState({@required this.contributorModel})
+      : assert(contributorModel != null);
+
+  @override
+  List<Object> get props => [contributorModel];
+
+  @override
+  String toString() =>
+      'ContributorTestDetailsState { name: ${contributorModel.name}}';
+
+}
+
+class ContributorLoadingState extends ContributorState {}
+
+class ContributorErrorState extends ContributorState {}
+

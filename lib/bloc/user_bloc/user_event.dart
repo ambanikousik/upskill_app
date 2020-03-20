@@ -34,3 +34,7 @@ class ResultUserEvent extends UserEvent {
 }
 
 class AnalysisUserEvent extends UserEvent {}
+
+class LoginUserEvent extends UserEvent {}
+
+class SignUpUserEvent extends UserEvent {}

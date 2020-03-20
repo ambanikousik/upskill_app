@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:upskillapp/bloc/bloc.dart';
 import 'package:upskillapp/data/data.dart';
 import 'package:upskillapp/presentation/presentation.dart';
 
@@ -29,7 +30,7 @@ class SigningScreen extends StatelessWidget {
                     Container(color:Colors.black,
                     height: height/4,
                         width: width*40,),
-                    Text('Email ir name',
+                    Text('Email or name',
                     style: normalText_1,),
                     TextField(
                       keyboardType: TextInputType.emailAddress,
@@ -59,34 +60,49 @@ class SigningScreen extends StatelessWidget {
                       BlueButton(
                         buttonText: 'Sign in now',
                         action: (){
-                        Navigator.pushNamed(context, '/survey');
+                          BlocProvider.of<UserBloc>(context).add(
+                              AnalysisUserEvent());
                       },),
                     Container(
                       width: width*100,
                       alignment: Alignment.center,
-                      child: RichText(
-                        text: TextSpan(
-                           text: 'Dont have an account?',
-                          style: TextStyle(fontSize: width*4.5,color: Colors.black38),
-                          children: <TextSpan> [
-                            TextSpan(
-                              text: ' Sign up',
-                              style: smallBlueBold,
-                            )
-                          ]
+                      child: GestureDetector(
+                        onTap: () {
+                          BlocProvider.of<UserBloc>(context).add(
+                              SignUpUserEvent());
+                        },
+                        child: RichText(
+                          text: TextSpan(
+                              text: 'Dont have an account?',
+                              style: TextStyle(
+                                  fontSize: width * 4.5, color: Colors.black38),
+                              children: <TextSpan>[
+                                TextSpan(
+                                  text: ' Sign up',
+                                  style: smallBlueBold,
+                                )
+                              ]
+                          ),
                         ),
                       ),
                     ),
                     Container(
                       width: width*100,
                       alignment: Alignment.center,
-                      child: Container(
-                        padding: EdgeInsets.symmetric(vertical: height,horizontal: width*4),
-                        child: Text('Skip sign up',
-                        style: smallBlueBold,),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          color: Colors.blue.withOpacity(0.2)
+                      child: GestureDetector(
+                        onTap: () {
+                          BlocProvider.of<UserBloc>(context).add(
+                              AnalysisUserEvent());
+                        },
+                        child: Container(
+                          padding: EdgeInsets.symmetric(vertical: height,
+                              horizontal: width * 4),
+                          child: Text('Skip sign up',
+                            style: smallBlueBold,),
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              color: Colors.blue.withOpacity(0.2)
+                          ),
                         ),
                       ),
                     ),

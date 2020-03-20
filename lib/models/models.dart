@@ -8,3 +8,4 @@ export 'subdomains_model.dart';
 export 'topics_model.dart';
 export 'test_model.dart';
 export 'analysis_model.dart';
+export 'contributor_model.dart';

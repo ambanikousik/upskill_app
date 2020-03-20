@@ -70,7 +70,7 @@ class ResultScreen extends StatelessWidget {
             BlueButton(
               buttonText: 'See result statistics',
               action: () {
-                BlocProvider.of<UserBloc>(context).add(AnalysisUserEvent());
+                BlocProvider.of<UserBloc>(context).add(LoginUserEvent());
               },
             ),
           ],

@@ -66,5 +66,25 @@ class UserBloc extends Bloc<UserEvent, UserState> {
         yield ErrorUserState();
       }
     }
+    if (event is LoginUserEvent) {
+      yield LoginUserState();
+      try {
+        final ContributorModel contributorModel = await upskillRepository
+            .getContributor();
+        yield LoginUserState();
+      } catch (_) {
+        yield ErrorUserState();
+      }
+    }
+    if (event is SignUpUserEvent) {
+      yield LoginUserState();
+      try {
+        final ContributorModel contributorModel = await upskillRepository
+            .getContributor();
+        yield SignUpUserState();
+      } catch (_) {
+        yield ErrorUserState();
+      }
+    }
   }
 }

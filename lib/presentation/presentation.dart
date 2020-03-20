@@ -15,6 +15,7 @@ export 'screens/user/test_screen.dart';
 export 'screens/user/result_screen.dart';
 export 'screens/user/analytic_screen.dart';
 export 'screens/user/user_splash_screen.dart';
+export 'screens/user/registration_screen.dart';
 
 
 //------------------ CONTRIBUTOR ----------------//

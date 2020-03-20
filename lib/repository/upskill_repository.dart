@@ -36,4 +36,10 @@ class UpskillRepository {
     return analysisModel;
   }
 
+  Future<ContributorModel> getContributor() async {
+    final ContributorModel contributorModel = await upskillApiClient
+        .getContributor();
+    return contributorModel;
+  }
+
 }

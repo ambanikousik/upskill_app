@@ -83,6 +83,10 @@ class AnalysisUserState extends UserState {
 
 }
 
+class LoginUserState extends UserState {}
+
+class SignUpUserState extends UserState {}
+
 class LoadingUserState extends UserState {}
 
 class ErrorUserState extends UserState {}

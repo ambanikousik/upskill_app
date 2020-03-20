@@ -173,6 +173,27 @@ class Contributor extends StatelessWidget {
               },
               child: TestStats());
         }
+        if (state is ContributorLoadingState) {
+          return AnimatedSwitcher(
+              switchOutCurve: Threshold(0),
+              duration: Duration(milliseconds: 250),
+              transitionBuilder: (Widget child, Animation<double> animation) {
+                return SlideTransition(
+                  position: Tween<Offset>(
+                    begin: const Offset(0, 0.25),
+                    end: Offset.zero,
+                  ).animate(animation),
+                  child: child,
+                );
+              },
+              child: LoadingIndicator());
+        }
+        if (state is ContributorErrorState) {
+          return Text(
+            'Something went wrong!',
+            style: TextStyle(color: Colors.red),
+          );
+        }
       },
     );
   }

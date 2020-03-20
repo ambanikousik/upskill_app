@@ -92,6 +92,38 @@ class User extends StatelessWidget {
               child: AnalyticScreen(resultStats: state.stats,));
         }
 
+        if (state is LoginUserState) {
+          return AnimatedSwitcher(
+              switchOutCurve: Threshold(0),
+              duration: Duration(milliseconds: 250),
+              transitionBuilder: (Widget child, Animation<double> animation) {
+                return SlideTransition(
+                  position: Tween<Offset>(
+                    begin: const Offset(0, 0.25),
+                    end: Offset.zero,
+                  ).animate(animation),
+                  child: child,
+                );
+              },
+              child: SigningScreen());
+        }
+
+        if (state is SignUpUserState) {
+          return AnimatedSwitcher(
+              switchOutCurve: Threshold(0),
+              duration: Duration(milliseconds: 250),
+              transitionBuilder: (Widget child, Animation<double> animation) {
+                return SlideTransition(
+                  position: Tween<Offset>(
+                    begin: const Offset(0, 0.25),
+                    end: Offset.zero,
+                  ).animate(animation),
+                  child: child,
+                );
+              },
+              child: RegistrationScreen());
+        }
+
         if (state is LoadingUserState) {
           return AnimatedSwitcher(
               switchOutCurve: Threshold(0),

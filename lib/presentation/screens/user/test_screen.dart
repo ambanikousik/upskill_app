@@ -1,26 +1,19 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:upskillapp/bloc/bloc.dart';
 import 'package:upskillapp/data/data.dart';
 import 'package:upskillapp/presentation/presentation.dart';
 import 'package:upskillapp/models/models.dart';
 
-
-
 class TestScreen extends StatelessWidget {
 
-  final List<AnswerModel> answers;
-  final QuestModel question;
-  final String route;
-
+  final Test test;
 
   TestScreen({
     Key key,
-    @required this.answers,
-    @required this.question,
-    @required this.route,
-  })  : assert(answers != null),
-        assert(question != null),
-        assert(route != null),
+    @required this.test,
+  })
+      : assert(test != null),
         super(key: key);
 
   @override
@@ -28,32 +21,79 @@ class TestScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: white,
       appBar: UpskillAppBar(),
-    body: SingleChildScrollView(
-      child: Container(
-        margin: EdgeInsets.symmetric(horizontal: width*6),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
+      body: SingleChildScrollView(
+        child: Container(
+          margin: EdgeInsets.symmetric(horizontal: width * 6),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
               RemainingTime(),
-            question.image!=null?Container():SizedBox(height: height*5,),
-            Padding(
-                padding:  EdgeInsets.symmetric(vertical:height*2),
-                child: Text(question.text,
-                  style: headline_2,),
-              ),
-              question.image!=null?Padding(padding: EdgeInsets.only(bottom: height*2), child: Image.asset(questionImg),):Container(),
-              AnswerOptions(answers: answers,),
-              SizedBox(height: height*5,),
-              BlueButton(
-                buttonText: 'Submit Answer',
-                action: (){
-                  BlocProvider.of<UserBloc>(context).add(ResultUserEvent());
-                },
-              )
+              BlocBuilder<TestBloc, TestState>(
+                // ignore: missing_return
+                  builder: (context, state) {
+                    if (state is InitialTestState) {
+                      return TestSplash(test: test,);
+                    }
+                    if (state is QuestionTestState) {
+                      return Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        mainAxisSize: MainAxisSize.min,
+                        children: <Widget>[
+                          state.question.image != null
+                              ? Container()
+                              : SizedBox(
+                            height: height * 5,
+                          ),
+                          Padding(
+                            padding: EdgeInsets.symmetric(vertical: height * 2),
+                            child: Text(
+                              state.question.text,
+                              style: headline_2,
+                            ),
+                          ),
+                          state.question.image != null
+                              ? Padding(
+                            padding: EdgeInsets.only(bottom: height * 2),
+                            child: Image.asset(questionImg),
+                          )
+                              : Container(),
+                          AnswerOptions(
+                            answers: state.answers,
+                          ),
+                          SizedBox(
+                            height: height * 5,
+                          ),
+                          BlueButton(
+                            buttonText: 'Submit Answer',
+                            action: () {
+                              if (state.index < test.questions.length - 1) {
+                                submittedAnswers.add(selectedAnswer);
+                                BlocProvider.of<TestBloc>(context).add(
+                                    NextQuestionTestEvent(
+                                        index: state.index + 1, test: test));
+                              }
+                              else {
+                                submittedAnswers.add(selectedAnswer);
+                                List<int> _correctAnswers = [];
+                                test.questions.forEach((element) {
+                                  _correctAnswers.add(element.correctAnswer);
+                                });
+                                BlocProvider.of<UserBloc>(context).add(
+                                    ResultUserEvent(
+                                        correctAnswers: _correctAnswers,
+                                        submittedAnswers: submittedAnswers));
+                              }
+                            },
+                          ),
+                        ],
+                      );
+                    }
+                  }),
+
             ],
           ),
+        ),
       ),
-    )
-    ,);
+    );
   }
 }

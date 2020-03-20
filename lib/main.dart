@@ -37,6 +37,11 @@ class MyApp extends StatelessWidget {
         BlocProvider<ContributorBloc>(
           create: (BuildContext context) => ContributorBloc(),
         ),
+        BlocProvider<TestBloc>(
+          create: (BuildContext context) =>
+              TestBloc(
+                  userBloc: UserBloc(upskillRepository: upskillRepository)),
+        ),
         BlocProvider<UserBloc>(
           create: (BuildContext context) =>
               UserBloc(upskillRepository: upskillRepository),

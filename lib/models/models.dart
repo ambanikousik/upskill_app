@@ -6,3 +6,5 @@ export 'question_model.dart';
 export 'domains_model.dart';
 export 'subdomains_model.dart';
 export 'topics_model.dart';
+export 'test_model.dart';
+export 'analysis_model.dart';

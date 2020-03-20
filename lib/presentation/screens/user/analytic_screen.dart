@@ -2,8 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:upskillapp/data/data.dart';
 import 'package:upskillapp/presentation/presentation.dart';
 import 'package:fl_chart/fl_chart.dart';
+import 'package:upskillapp/models/models.dart';
 
 class AnalyticScreen extends StatelessWidget {
+
+  final AnalysisModel resultStats;
+
+  AnalyticScreen({
+    Key key,
+    @required this.resultStats,
+  })
+      : assert(resultStats != null),
+        super(key: key);
+
   int touchedIndex;
 
   @override
@@ -26,7 +37,7 @@ class AnalyticScreen extends StatelessWidget {
                       style: headline_2,
                       children: <TextSpan>[
                         TextSpan(
-                          text: '\n70%',
+                          text: '\n${resultStats.avg}%',
                           style: headlineGreen,
                         )
                       ]),
@@ -40,7 +51,8 @@ class AnalyticScreen extends StatelessWidget {
                 width: width * 100,
               ),
               ScoreBoard(),
-              CompetitiveAnalysis(),
+              CompetitiveAnalysis(score: resultStats.analysis.score,
+                avgScore: resultStats.analysis.avgScore,),
               Padding(
                 padding: EdgeInsets.symmetric(vertical: height * 2),
                 child: Container(
@@ -52,11 +64,12 @@ class AnalyticScreen extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       Text(
-                        'Ranking 21',
+                        'Ranking ${resultStats.rank[0]}',
                         style: headline_2,
                       ),
                       Text(
-                        'You are better than 81% of the people',
+                        'You are better than ${resultStats
+                            .rank[1]}% of the people',
                         style: topicTitleText,
                       )
                     ],
@@ -76,14 +89,13 @@ class AnalyticScreen extends StatelessWidget {
     );
   }
 
-  BarChartGroupData makeGroupData(
-    int x,
-    double y, {
-    bool isTouched = false,
-    Color barColor = Colors.green,
-    double width = 50,
-    List<int> showTooltips = const [],
-  }) {
+  BarChartGroupData makeGroupData(int x,
+      double y, {
+        bool isTouched = false,
+        Color barColor = Colors.green,
+        double width = 50,
+        List<int> showTooltips = const [],
+      }) {
     return BarChartGroupData(
       x: x,
       barRods: [
@@ -104,17 +116,20 @@ class AnalyticScreen extends StatelessWidget {
   }
 
   List<BarChartGroupData> showingGroups() => List.generate(3, (i) {
-        switch (i) {
-          case 0:
-            return makeGroupData(0, 5, isTouched: i == touchedIndex);
-          case 1:
-            return makeGroupData(1, 10, isTouched: i == touchedIndex);
-          case 2:
-            return makeGroupData(2, 20, isTouched: i == touchedIndex);
-          default:
-            return null;
-        }
-      });
+    switch (i) {
+      case 0:
+        return makeGroupData(0, resultStats.chart.node.toDouble() * 5,
+            isTouched: i == touchedIndex);
+      case 1:
+        return makeGroupData(1, resultStats.chart.angular.toDouble() * 5,
+            isTouched: i == touchedIndex);
+      case 2:
+        return makeGroupData(2, resultStats.chart.vue.toDouble() * 5,
+            isTouched: i == touchedIndex);
+      default:
+        return null;
+    }
+  });
 
   BarChartData mainBarData() {
     return BarChartData(

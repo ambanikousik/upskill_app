@@ -6,7 +6,7 @@ import 'package:upskillapp/bloc/bloc.dart';
 class UserSplashScreen extends StatelessWidget {
   void nextScreen(BuildContext context) {
     Future.delayed(Duration(seconds: 1), () {
-      BlocProvider.of<UserBloc>(context).add(SubdomainUserEvent());
+      BlocProvider.of<UserBloc>(context).add(TopicUserEvent());
     });
   }
 

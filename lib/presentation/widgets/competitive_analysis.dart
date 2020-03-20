@@ -2,6 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:upskillapp/data/data.dart';
 
 class CompetitiveAnalysis extends StatelessWidget {
+  final double score;
+  final int avgScore;
+
+
+  CompetitiveAnalysis({
+    Key key,
+    @required this.score,
+    @required this.avgScore,
+  })
+      : assert(score != null),
+        assert(avgScore != null),
+        super(key: key);
+
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -33,7 +47,7 @@ class CompetitiveAnalysis extends StatelessWidget {
                 child: Container(
                   child: Container(
                     height: height * 3,
-                    width: width * 25,
+                    width: width * score,
                     alignment: Alignment.centerLeft,
                     decoration: BoxDecoration(
                         color: green, borderRadius: BorderRadius.circular(5)),
@@ -51,7 +65,7 @@ class CompetitiveAnalysis extends StatelessWidget {
                   horizontal: width * 2,
                 ),
                 child: Text(
-                  '8.5',
+                  score.toStringAsFixed(1),
                   style: smallBold,
                 ),
               )
@@ -72,7 +86,7 @@ class CompetitiveAnalysis extends StatelessWidget {
                 child: Container(
                   child: Container(
                     height: height * 3,
-                    width: width * 55,
+                    width: width * avgScore,
                     alignment: Alignment.centerLeft,
                     decoration: BoxDecoration(
                         color: green, borderRadius: BorderRadius.circular(5)),

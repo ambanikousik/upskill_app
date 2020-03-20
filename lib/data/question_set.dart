@@ -1,6 +1,12 @@
 import 'package:upskillapp/data/assets.dart';
 import 'package:upskillapp/models/models.dart';
 
+int selectedAnswer;
+List<int> submittedAnswers = [];
+
+
+
+
 QuestModel question1 = QuestModel(text: 'Q.1 What is Vue?');
 QuestModel question2 = QuestModel(text: 'Q.1 What is Vue?',image: questionImg);
 

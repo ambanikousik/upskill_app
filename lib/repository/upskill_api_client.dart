@@ -3,6 +3,7 @@ import 'package:http/http.dart' as http;
 import 'package:meta/meta.dart';
 import 'dart:convert';
 
+
 class UpskillApiClient {
   static const baseUrl = 'https://mock-api-upskill.herokuapp.com';
   final http.Client httpClient;
@@ -43,4 +44,27 @@ class UpskillApiClient {
     TopicsList topicsList = TopicsList.fromJson(topicJson);
     return topicsList;
   }
+
+  Future<Test> getTest() async {
+    final testUrl = '$baseUrl/tests';
+    final testResponse = await this.httpClient.get(testUrl);
+    if (testResponse.statusCode != 200) {
+      throw Exception('error getting domains');
+    }
+    final testJson = json.decode(testResponse.body);
+    Test test = Test.fromJson(testJson);
+    return test;
+  }
+
+  Future<AnalysisModel> getStats() async {
+    final statsUrl = '$baseUrl/result';
+    final statsResponse = await this.httpClient.get(statsUrl);
+    if (statsResponse.statusCode != 200) {
+      throw Exception('error getting domains');
+    }
+    final statsJson = json.decode(statsResponse.body);
+    AnalysisModel analysisModel = AnalysisModel.fromJson(statsJson);
+    return analysisModel;
+  }
+
 }

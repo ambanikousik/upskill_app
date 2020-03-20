@@ -25,4 +25,15 @@ class UpskillRepository {
     final TopicsList topicsList = await upskillApiClient.getTopics();
     return topicsList;
   }
+
+  Future<Test> getTest() async {
+    final Test test = await upskillApiClient.getTest();
+    return test;
+  }
+
+  Future<AnalysisModel> getStats() async {
+    final AnalysisModel analysisModel = await upskillApiClient.getStats();
+    return analysisModel;
+  }
+
 }

@@ -37,13 +37,34 @@ class UserBloc extends Bloc<UserEvent, UserState> {
       }
     }
     if (event is TestUserEvent) {
-      yield TestUserState();
+      yield LoadingUserState();
+      try {
+        final Test test = await upskillRepository.getTest();
+        yield TestUserState(test: test);
+      } catch (_) {
+        yield ErrorUserState();
+      }
     }
     if (event is ResultUserEvent) {
-      yield ResultUserState();
+      int _result = 0;
+      for (int i = 0; i < event.correctAnswers.length; i++) {
+        if (event.submittedAnswers[i] == event.correctAnswers[i]) {
+          _result++;
+        }
+      }
+
+      double _grade = (_result / event.correctAnswers.length) * 100;
+
+      yield ResultUserState(grade: _grade);
     }
     if (event is AnalysisUserEvent) {
-      yield AnalysisUserState();
+      yield LoadingUserState();
+      try {
+        final AnalysisModel analysisModel = await upskillRepository.getStats();
+        yield AnalysisUserState(stats: analysisModel);
+      } catch (_) {
+        yield ErrorUserState();
+      }
     }
   }
 }

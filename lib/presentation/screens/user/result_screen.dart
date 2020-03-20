@@ -4,6 +4,12 @@ import 'package:upskillapp/data/data.dart';
 import 'package:upskillapp/presentation/presentation.dart';
 
 class ResultScreen extends StatelessWidget {
+
+  final double grade;
+
+  ResultScreen({@required this.grade})
+      : assert(grade != null);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -52,7 +58,7 @@ class ResultScreen extends StatelessWidget {
                     style: headline_2,
                     children: <TextSpan>[
                       TextSpan(
-                        text: '\n70%',
+                        text: '\n${grade.toStringAsFixed(2)}',
                         style: headlineGreen,
                       )
                     ]),

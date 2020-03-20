@@ -11,3 +11,8 @@ export 'package:flutter_bloc/flutter_bloc.dart';
 export 'user_bloc/user_bloc.dart';
 export 'user_bloc/user_event.dart';
 export 'user_bloc/user_state.dart';
+
+
+export 'test_bloc/test_bloc.dart';
+export 'test_bloc/test_event.dart';
+export 'test_bloc/test_state.dart';

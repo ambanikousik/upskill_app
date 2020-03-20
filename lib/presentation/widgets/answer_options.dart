@@ -35,11 +35,14 @@ class _AnswerOptionsState extends State<AnswerOptions> {
                       if (widget.answers[index].isSelected == true) {
                         widget.answers
                             .forEach((element) => element.isSelected = false);
+                        selectedAnswer = 0;
                       } else {
                         widget.answers
                             .forEach((element) => element.isSelected = false);
                         widget.answers[index].isSelected = true;
+                        selectedAnswer = index + 1;
                       }
+                      print(selectedAnswer);
                     });
                   },
                   child: OnlyTextOption(widget.answers[index]),

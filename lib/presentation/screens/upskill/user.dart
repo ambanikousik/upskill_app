@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:upskillapp/bloc/bloc.dart';
-import 'package:upskillapp/data/data.dart';
 import 'package:upskillapp/presentation/presentation.dart';
+
 
 class User extends StatelessWidget {
   @override
@@ -57,9 +57,7 @@ class User extends StatelessWidget {
               );
             },
             child: TestScreen(
-              question: question1,
-              answers: answer1,
-              route: 'test2',
+              test: state.test,
             ),
           );
         }
@@ -76,7 +74,7 @@ class User extends StatelessWidget {
                   child: child,
                 );
               },
-              child: ResultScreen());
+              child: ResultScreen(grade: state.grade,));
         }
         if (state is AnalysisUserState) {
           return AnimatedSwitcher(
@@ -91,7 +89,7 @@ class User extends StatelessWidget {
                   child: child,
                 );
               },
-              child: AnalyticScreen());
+              child: AnalyticScreen(resultStats: state.stats,));
         }
 
         if (state is LoadingUserState) {

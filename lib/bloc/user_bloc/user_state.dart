@@ -38,11 +38,50 @@ class TopicUserState extends UserState {
   String toString() => 'TopicUserState { topics: ${topicsList.topics.length}}';
 }
 
-class TestUserState extends UserState {}
+class TestUserState extends UserState {
+  final Test test;
 
-class ResultUserState extends UserState {}
+  const TestUserState({@required this.test})
+      : assert(test != null);
 
-class AnalysisUserState extends UserState {}
+  @override
+  List<Object> get props => [test];
+
+  @override
+  String toString() =>
+      'TestUserState { questions: ${test.questions.length} timeLimit: ${test
+          .limit} testId: ${test.testId}}';
+}
+
+class ResultUserState extends UserState {
+
+  final double grade;
+
+  const ResultUserState({@required this.grade})
+      : assert(grade != null);
+
+  @override
+  List<Object> get props => [grade];
+
+  @override
+  String toString() => 'ResultUserState { result: $grade}';
+
+}
+
+class AnalysisUserState extends UserState {
+
+  final AnalysisModel stats;
+
+  const AnalysisUserState({@required this.stats})
+      : assert(stats != null);
+
+  @override
+  List<Object> get props => [stats];
+
+  @override
+  String toString() => 'AnalysisUserState { avg: ${stats.avg}}';
+
+}
 
 class LoadingUserState extends UserState {}
 

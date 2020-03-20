@@ -9,3 +9,4 @@ export 'topics_model.dart';
 export 'test_model.dart';
 export 'analysis_model.dart';
 export 'contributor_model.dart';
+export 'test_stats_model.dart';

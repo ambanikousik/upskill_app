@@ -51,50 +51,16 @@ class DomainScreen extends StatelessWidget {
                     action: () {
                       BlocProvider.of<UpskillBloc>(context)
                           .add(UpskillUserEvent());
+                      BlocProvider.of<UserBloc>(context).add(TopicUserEvent());
                     },
                   );
                 },
-//                children: <Widget>[
-//                  Domain(
-//                    domainText: 'Digital Marketing',
-//                    image: domain_1,
-//                    action: () {
-//                      BlocProvider.of<UpskillBloc>(context)
-//                          .add(UpskillUserEvent());
-//                    },
-//                  ),
-//                  Domain(
-//                    domainText: 'Programming',
-//                    image: domain_2,
-//                    action: () {
-//                      BlocProvider.of<UpskillBloc>(context)
-//                          .add(UpskillUserEvent());
-//                    },
-//                  ),
-//                  Domain(
-//                    domainText: 'Fund Raising',
-//                    image: domain_3,
-//                    action: () {
-//                      BlocProvider.of<UpskillBloc>(context)
-//                          .add(UpskillUserEvent());
-//                    },
-//                  ),
-//                  Domain(
-//                    domainText: 'Data Analysis',
-//                    image: domain_4,
-//                    action: () {
-//                      BlocProvider.of<UpskillBloc>(context)
-//                          .add(UpskillUserEvent());
-//                    },
-//                  ),
-//                ],
               ),
               SizedBox(
                 height: height * 10,
               ),
               GestureDetector(
-                child: Container(
-                  width: width * 100,
+                child: Align(
                   alignment: Alignment.centerRight,
                   child: Container(
                     padding: EdgeInsets.symmetric(

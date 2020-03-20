@@ -82,19 +82,43 @@ class TestDetails extends StatelessWidget {
               SizedBox(
                 height: height * 35,
               ),
-              Align(
-                alignment: Alignment.bottomRight,
-                child: Container(
-                  width: width * 40,
-                  child: BlueButton(
-                    textSize: width * 4,
-                    buttonText: 'Save and go next',
-                    action: () {
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  GestureDetector(
+                    onTap: () {
                       BlocProvider.of<ContributorBloc>(context).add(
-                          ContributorAddQuestionEvent());
+                          ContributorCreateTestEvent());
                     },
+                    child: Container(
+                      height: height * 7,
+                      width: width * 45,
+                      alignment: Alignment.center,
+                      child: Text(
+                        'Previous',
+                        style: TextStyle(
+                            color: Colors.blue,
+                            fontSize: width * 4,
+                            fontWeight: FontWeight.w700),
+                      ),
+                      decoration: BoxDecoration(
+                        color: blue.withOpacity(0.1),
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                    ),
                   ),
-                ),
+                  Container(
+                    width: width * 40,
+                    child: BlueButton(
+                      textSize: width * 4,
+                      buttonText: 'Save and go next',
+                      action: () {
+                        BlocProvider.of<ContributorBloc>(context).add(
+                            ContributorAddQuestionEvent());
+                      },
+                    ),
+                  )
+                ],
               ),
             ],
           ),

@@ -120,7 +120,7 @@ class _NewTestState extends State<NewTest> {
                 ),
               ),
               TextField(
-                keyboardType: TextInputType.emailAddress,
+                keyboardType: TextInputType.text,
                 autofocus: false,
                 decoration: InputDecoration(
                   hintText: 'Vue',

@@ -12,9 +12,9 @@ class ContributorModel {
     image = json['image'];
     name = json['name'];
     result =
-        json['result'] != null ? new Result.fromJson(json['result']) : null;
+    json['result'] != null ? new Result.fromJson(json['result']) : null;
     reward =
-        json['reward'] != null ? new Reward.fromJson(json['reward']) : null;
+    json['reward'] != null ? new Reward.fromJson(json['reward']) : null;
     if (json['stats'] != null) {
       stats = new List<Stats>();
       json['stats'].forEach((v) {
@@ -83,15 +83,22 @@ class Reward {
 
 class Stats {
   String title;
+  String image;
   String created;
   String coding;
   int view;
   int completed;
 
-  Stats({this.title, this.created, this.coding, this.view, this.completed});
+  Stats({this.title,
+    this.image,
+    this.created,
+    this.coding,
+    this.view,
+    this.completed});
 
   Stats.fromJson(Map<String, dynamic> json) {
     title = json['title'];
+    image = json['image'];
     created = json['created'];
     coding = json['coding'];
     view = json['view'];
@@ -101,6 +108,7 @@ class Stats {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['title'] = this.title;
+    data['image'] = this.image;
     data['created'] = this.created;
     data['coding'] = this.coding;
     data['view'] = this.view;

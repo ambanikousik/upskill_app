@@ -16,3 +16,6 @@ export 'user_bloc/user_state.dart';
 export 'test_bloc/test_bloc.dart';
 export 'test_bloc/test_event.dart';
 export 'test_bloc/test_state.dart';
+export 'timer_bloc/timer_bloc.dart';
+export 'timer_bloc/timer_event.dart';
+export 'timer_bloc/timer_state.dart';

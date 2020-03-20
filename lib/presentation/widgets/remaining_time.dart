@@ -3,6 +3,21 @@ import 'package:upskillapp/data/data.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class RemainingTime extends StatelessWidget {
+
+  final String minute;
+  final String second;
+
+//  Button()
+
+  RemainingTime({
+    Key key,
+    @required this.minute,
+    @required this.second,
+  })
+      : assert(minute != null),
+        assert(second != null),
+        super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -11,31 +26,22 @@ class RemainingTime extends StatelessWidget {
         Padding(
           padding:  EdgeInsets.symmetric(vertical:height*2,),
           child: Text('Remaining time',
-          style: normalText_2,),
+            style: normalText_2,),
         ),
         Container(
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Icon(FontAwesomeIcons.clock,color: green,),
-              RichText(
-                text: TextSpan(
-                  text: ' 30',
-                  style: TextStyle(fontSize:width*6,color: green,fontWeight: FontWeight.bold),
-                  children: <TextSpan>[
-                    TextSpan(
-                      text: ' Sec',
-                      style: TextStyle(fontWeight: FontWeight.normal)
-                    ),
-                  ]
-                ),
-              )
+              Text('$minute:$second', style: TextStyle(fontSize: width * 6,
+                  color: green,
+                  fontWeight: FontWeight.bold),),
             ],
           ),
           height: height*11,
           decoration: BoxDecoration(
-            color: green.withOpacity(0.15),
-            borderRadius: BorderRadius.circular(10)
+              color: green.withOpacity(0.15),
+              borderRadius: BorderRadius.circular(10)
           ),
         )
       ],

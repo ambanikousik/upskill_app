@@ -9,6 +9,7 @@ abstract class TestEvent extends Equatable {
   List<Object> get props => [];
 }
 
+class ResetTestEvent extends TestEvent {}
 class NextQuestionTestEvent extends TestEvent {
   final int index;
   final Test test;

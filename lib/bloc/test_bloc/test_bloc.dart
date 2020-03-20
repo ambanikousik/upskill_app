@@ -31,5 +31,8 @@ class TestBloc extends Bloc<TestEvent, TestState> {
       yield QuestionTestState(
           answers: _answers, question: _question, index: _index);
     }
+    if (event is ResetTestEvent) {
+      yield InitialTestState();
+    }
   }
 }

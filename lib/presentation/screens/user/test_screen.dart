@@ -6,7 +6,6 @@ import 'package:upskillapp/presentation/presentation.dart';
 import 'package:upskillapp/models/models.dart';
 
 class TestScreen extends StatelessWidget {
-
   final Test test;
 
   TestScreen({
@@ -27,12 +26,27 @@ class TestScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              RemainingTime(),
+              BlocBuilder<TimerBloc, TimerState>(
+                builder: (context, state) {
+                  final String minutesStr = ((state.duration / 60) % 60)
+                      .floor()
+                      .toString()
+                      .padLeft(2, '0');
+                  final String secondsStr =
+                  (state.duration % 60).floor().toString().padLeft(2, '0');
+                  return RemainingTime(
+                    minute: minutesStr,
+                    second: secondsStr,
+                  );
+                },
+              ),
               BlocBuilder<TestBloc, TestState>(
                 // ignore: missing_return
                   builder: (context, state) {
                     if (state is InitialTestState) {
-                      return TestSplash(test: test,);
+                      return TestSplash(
+                        test: test,
+                      );
                     }
                     if (state is QuestionTestState) {
                       return Column(
@@ -71,13 +85,14 @@ class TestScreen extends StatelessWidget {
                                 BlocProvider.of<TestBloc>(context).add(
                                     NextQuestionTestEvent(
                                         index: state.index + 1, test: test));
-                              }
-                              else {
+                              } else {
                                 submittedAnswers.add(selectedAnswer);
                                 List<int> _correctAnswers = [];
                                 test.questions.forEach((element) {
                                   _correctAnswers.add(element.correctAnswer);
                                 });
+                                BlocProvider.of<TimerBloc>(context).add(
+                                    Pause());
                                 BlocProvider.of<UserBloc>(context).add(
                                     ResultUserEvent(
                                         correctAnswers: _correctAnswers,
@@ -89,7 +104,6 @@ class TestScreen extends StatelessWidget {
                       );
                     }
                   }),
-
             ],
           ),
         ),

@@ -258,20 +258,26 @@ class _AddQuestionState extends State<AddQuestion> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
-                  Container(
-                    height: height * 7,
-                    width: width * 45,
-                    alignment: Alignment.center,
-                    child: Text(
-                      'Previous',
-                      style: TextStyle(
-                          color: Colors.blue,
-                          fontSize: width * 4,
-                          fontWeight: FontWeight.w700),
-                    ),
-                    decoration: BoxDecoration(
-                      color: blue.withOpacity(0.1),
-                      borderRadius: BorderRadius.circular(10),
+                  GestureDetector(
+                    onTap: () {
+                      BlocProvider.of<ContributorBloc>(context).add(
+                          ContributorAddDetailsEvent());
+                    },
+                    child: Container(
+                      height: height * 7,
+                      width: width * 45,
+                      alignment: Alignment.center,
+                      child: Text(
+                        'Previous',
+                        style: TextStyle(
+                            color: Colors.blue,
+                            fontSize: width * 4,
+                            fontWeight: FontWeight.w700),
+                      ),
+                      decoration: BoxDecoration(
+                        color: blue.withOpacity(0.1),
+                        borderRadius: BorderRadius.circular(10),
+                      ),
                     ),
                   ),
                   Container(

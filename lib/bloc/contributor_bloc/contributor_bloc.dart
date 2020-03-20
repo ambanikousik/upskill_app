@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:upskillapp/models/contributor_model.dart';
+import 'package:upskillapp/models/models.dart';
 import '../bloc.dart';
 import 'package:upskillapp/repository/repositories.dart';
 import 'package:meta/meta.dart';
@@ -46,20 +47,21 @@ class ContributorBloc extends Bloc<ContributorEvent, ContributorState> {
       try {
         final ContributorModel contributorModel = await upskillRepository
             .getContributor();
-        yield ContributorProfileState();
+        yield ContributorProfileState(contributorModel: contributorModel);
       } catch (_) {
         yield ContributorErrorState();
       }
     }
     if (event is ContributorTestDetailsEvent) {
-      yield ContributorLoadingState();
-      try {
-        final ContributorModel contributorModel = await upskillRepository
-            .getContributor();
-        yield ContributorTestDetailsState(contributorModel: contributorModel);
-      } catch (_) {
-        yield ContributorErrorState();
-      }
+      final TestStatsModel _testStatsModel = TestStatsModel(
+        title: event.contributorModel.stats[event.index].title,
+        created: event.contributorModel.stats[event.index].created,
+        completed: event.contributorModel.stats[event.index].completed,
+        coding: event.contributorModel.stats[event.index].coding,
+        image: event.contributorModel.stats[event.index].image,
+        view: event.contributorModel.stats[event.index].view,
+      );
+      yield ContributorTestDetailsState(testStatsModel: _testStatsModel);
     }
     if (event is ContributorQuestionListEvent) {
       yield ContributorQuestionListState();

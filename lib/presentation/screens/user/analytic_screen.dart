@@ -3,6 +3,7 @@ import 'package:upskillapp/data/data.dart';
 import 'package:upskillapp/presentation/presentation.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:upskillapp/models/models.dart';
+import 'package:upskillapp/bloc/bloc.dart';
 
 class AnalyticScreen extends StatelessWidget {
 
@@ -23,13 +24,13 @@ class AnalyticScreen extends StatelessWidget {
       appBar: UpskillAppBar(),
       body: SingleChildScrollView(
         child: Container(
-          width: width * 100,
-          margin: EdgeInsets.symmetric(horizontal: width * 6),
+          margin: EdgeInsets.symmetric(
+              horizontal: width * 6, vertical: height * 4),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
               Padding(
-                padding: EdgeInsets.symmetric(vertical: height * 5),
+                padding: EdgeInsets.symmetric(vertical: height * 3),
                 child: RichText(
                   textAlign: TextAlign.center,
                   text: TextSpan(
@@ -81,6 +82,24 @@ class AnalyticScreen extends StatelessWidget {
               ),
               SizedBox(
                 height: height * 2,
+              ),
+              Align(
+                alignment: Alignment.centerRight,
+                child: Container(
+                  width: width * 30,
+                  height: height * 7,
+                  child: BlueButton(
+                    buttonText: 'Homepage',
+                    textSize: width * 5,
+                    action: () {
+                      BlocProvider.of<TestBloc>(context).add(
+                          ResetTestEvent());
+
+                      BlocProvider.of<UpskillBloc>(context)
+                          .add(UpskillDomainEvent());
+                    },
+                  ),
+                ),
               )
             ],
           ),
@@ -154,15 +173,6 @@ class AnalyticScreen extends StatelessWidget {
                   TextStyle(color: Colors.yellow));
             }),
         touchCallback: (barTouchResponse) {
-//          setState(() {
-//            if (barTouchResponse.spot != null &&
-//                barTouchResponse.touchInput is! FlPanEnd &&
-//                barTouchResponse.touchInput is! FlLongPressEnd) {
-//              touchedIndex = barTouchResponse.spot.touchedBarGroupIndex;
-//            } else {
-//              touchedIndex = -1;
-//            }
-//          });
         },
       ),
       titlesData: FlTitlesData(

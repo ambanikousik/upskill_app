@@ -44,6 +44,8 @@ class User extends StatelessWidget {
               ));
         }
         if (state is TestUserState) {
+          BlocProvider.of<TimerBloc>(context).add(
+              Start(duration: state.test.limit));
           return AnimatedSwitcher(
             switchOutCurve: Threshold(0),
             duration: Duration(milliseconds: 250),

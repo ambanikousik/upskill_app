@@ -2,8 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:upskillapp/bloc/bloc.dart';
 import 'package:upskillapp/data/data.dart';
 import 'package:upskillapp/presentation/presentation.dart';
+import 'package:upskillapp/models/models.dart';
 
 class ContributorProfile extends StatelessWidget {
+
+  final ContributorModel contributorModel;
+
+  ContributorProfile({
+    Key key,
+    @required this.contributorModel,
+  })
+      : assert(contributorModel != null),
+        super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -49,7 +60,7 @@ class ContributorProfile extends StatelessWidget {
                 child: Padding(
                   padding: EdgeInsets.symmetric(vertical: height * 2),
                   child: Text(
-                    'Eugene Bailey',
+                    contributorModel.name,
                     style: headline_2,
                   ),
                 ),
@@ -61,39 +72,26 @@ class ContributorProfile extends StatelessWidget {
                   style: topicTitleText,
                 ),
               ),
-              TopicTileContributor(
-                title: 'Angular',
-                image: angular,
-                date: '20/01/2020',
-                participants: 240,
-                approved: true,
-                action: () {
-                  BlocProvider.of<ContributorBloc>(context).add(
-                      ContributorTestDetailsEvent());
-                },
-              ),
-              TopicTileContributor(
-                title: 'Vue',
-                image: vue,
-                date: '20/01/2020',
-                participants: 170,
-                approved: true,
-                action: () {
-                  BlocProvider.of<ContributorBloc>(context).add(
-                      ContributorTestDetailsEvent());
-                },
-              ),
-              TopicTileContributor(
-                title: 'Node.JS',
-                image: node,
-                date: '20/01/2020',
-                participants: 240,
-                approved: false,
-                action: () {
-                  BlocProvider.of<ContributorBloc>(context).add(
-                      ContributorTestDetailsEvent());
-                },
-              ),
+              ListView.builder(
+                  shrinkWrap: true,
+                  physics: NeverScrollableScrollPhysics(),
+                  itemCount: contributorModel.stats.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    final _stats = contributorModel.stats;
+                    return TopicTileContributor(
+                      title: _stats[index].title,
+                      image: _stats[index].image,
+                      date: _stats[index].created,
+                      participants: _stats[index].view,
+                      approved: true,
+                      action: () {
+                        BlocProvider.of<ContributorBloc>(context).add(
+                            ContributorTestDetailsEvent(
+                                contributorModel: contributorModel,
+                                index: index));
+                      },
+                    );
+                  }),
               Padding(
                 padding: EdgeInsets.symmetric(vertical: height * 2),
                 child: Text(
@@ -115,15 +113,16 @@ class ContributorProfile extends StatelessWidget {
                         width: width * 30,
                         child: Text('5% discount', style: normalText_1)),
                     Container(
-                      width: width * 30,
-                      height: height * 7,
-                      child: BlueButton(
-                        buttonText: 'Claim',
-                        action: () {
-
-                        },
+                      padding: EdgeInsets.symmetric(
+                          vertical: height * 2, horizontal: width * 8),
+                      child: Text(
+                        'Claim',
+                        style: smallBlueBold,
                       ),
-                    )
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color: Colors.blue.withOpacity(0.15)),
+                    ),
                   ],
                 ),
               ),
@@ -141,18 +140,37 @@ class ContributorProfile extends StatelessWidget {
                         width: width * 30,
                         child: Text('15% discount', style: normalText_1)),
                     Container(
-                      width: width * 30,
-                      height: height * 7,
-                      child: BlueButton(
-                        buttonText: 'Claim',
-                        action: () {
-
-                        },
+                      padding: EdgeInsets.symmetric(
+                          vertical: height * 2, horizontal: width * 8),
+                      child: Text(
+                        'Claim',
+                        style: smallBlueBold,
                       ),
-                    )
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color: Colors.blue.withOpacity(0.15)),
+                    ),
                   ],
                 ),
               ),
+              SizedBox(height: height * 5,),
+              Align(
+                alignment: Alignment.center,
+                child: Container(
+                  width: width * 35,
+                  height: height * 6.5,
+                  child: BlueButton(
+                    buttonText: 'Homepage',
+                    textSize: width * 5,
+                    action: () {
+                      BlocProvider.of<ContributorBloc>(context)
+                          .add(ContributorCreateTestEvent());
+                      BlocProvider.of<UpskillBloc>(context)
+                          .add(UpskillDomainEvent());
+                    },
+                  ),
+                ),
+              )
             ],
           ),
         ),

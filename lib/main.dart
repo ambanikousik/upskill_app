@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:upskillapp/bloc/bloc.dart';
+import 'package:upskillapp/data/data.dart';
 import 'simple_bloc_delegate.dart';
 import 'presentation/presentation.dart';
 import 'repository/repositories.dart';
@@ -46,6 +47,10 @@ class MyApp extends StatelessWidget {
         BlocProvider<UserBloc>(
           create: (BuildContext context) =>
               UserBloc(upskillRepository: upskillRepository),
+        ),
+        BlocProvider<TimerBloc>(
+          create: (BuildContext context) =>
+              TimerBloc(ticker: Ticker()),
         ),
       ],
       child: MaterialApp(

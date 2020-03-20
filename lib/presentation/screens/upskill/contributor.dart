@@ -156,7 +156,8 @@ class Contributor extends StatelessWidget {
                   child: child,
                 );
               },
-              child: ContributorProfile());
+              child: ContributorProfile(
+                contributorModel: state.contributorModel,));
         }
         if (state is ContributorTestDetailsState) {
           return AnimatedSwitcher(
@@ -171,7 +172,7 @@ class Contributor extends StatelessWidget {
                   child: child,
                 );
               },
-              child: TestStats());
+              child: TestStats(testStatsModel: state.testStatsModel,));
         }
         if (state is ContributorLoadingState) {
           return AnimatedSwitcher(
